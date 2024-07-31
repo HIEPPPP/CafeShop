@@ -1,0 +1,177 @@
+Data Cafe Shop
+CREATE DATABASE CafeShop
+GO
+
+USE CafeShop
+GO
+
+-- Accout
+-- Food
+-- FoodCategory
+-- Bill
+-- BillInfo
+
+CREATE TABLE TableFood
+(
+    Id INT IDENTITY PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Status NVARCHAR(100) NOT NULL,  -- Trống, Có người  
+)
+GO
+
+CREATE TABLE Acount
+(
+    Id INT IDENTITY PRIMARY KEY,
+    DisplayName NVARCHAR(100) NOT NULL,
+    Username NVARCHAR(100) NOT NULL,
+    Password NVARCHAR(100) NOT NULL,
+    Type INT NOT NULL
+)
+GO
+
+CREATE TABLE FoodCategory
+(
+    Id INT IDENTITY PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+)
+GO
+
+CREATE Table Food 
+(
+    Id INT IDENTITY PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    CategoryId INT NOT NULL,
+    Price FLOAT NOT NULL,
+    FOREIGN KEY (CategoryId) REFERENCES dbo.FoodCategory(Id),
+)
+GO
+
+CREATE TABLE Bill 
+(
+    Id INT IDENTITY PRIMARY KEY,
+    DataCheckIn DATE,    
+    DataCheckOut DATE,
+    TableId INT NOT NULL,
+    Status INT DEFAULT 0, -- 1 - Đã thanh toán, 0 - Chưa thanh toán    
+    FOREIGN KEY (TableId) REFERENCES dbo.TableFood(Id),
+)
+GO
+
+CREATE TABLE BillInfo 
+(
+    Id INT IDENTITY PRIMARY KEY,
+    BillId INT NOT NULL,
+    FoodId INT NOT NULL,
+    Count INT NOT NULL DEFAULT 0, 
+    FOREIGN KEY (BillId) REFERENCES dbo.Bill(Id),
+    FOREIGN KEY (FoodId) REFERENCES dbo.Food(Id),
+)
+GO
+
+CREATE PROC USP_Login
+@username NVARCHAR(100), @password NVARCHAR(100)
+AS
+BEGIN
+    SELECT * FROM Acount WHERE Username = @username AND Password = @password;
+END
+GO
+
+EXEC USP_Login @username = N'admin', @password = N'admin123';
+GO
+
+CREATE PROC USP_GetTableList
+AS SELECT * FROM TableFood
+GO
+
+EXEC USP_GetTableList;
+GO
+
+
+-- Thêm Category
+INSERT INTO FoodCategory(Name) 
+VALUES(N'Hải sản')
+GO
+
+INSERT INTO FoodCategory(Name) 
+VALUES(N'Nông sản')
+GO
+
+INSERT INTO FoodCategory(Name) 
+VALUES(N'Lâm sản')
+GO
+
+INSERT INTO FoodCategory(Name) 
+VALUES(N'Nước')
+GO
+
+-- Thêm Food
+INSERT INTO Food(Name, CategoryId, Price) 
+VALUES(N'Mực một nắng', 1, 120000)
+GO
+
+INSERT INTO Food(Name, CategoryId, Price) 
+VALUES(N'Cua hoàng đế', 1, 1200000)
+GO
+
+INSERT INTO Food(Name, CategoryId, Price) 
+VALUES(N'Gà đồi nướng', 3, 300000)
+GO
+
+INSERT INTO Food(Name, CategoryId, Price) 
+VALUES(N'Dú dê nướng sữa', 3, 120000)
+GO
+
+INSERT INTO Food(Name, CategoryId, Price) 
+VALUES(N'Vịt quay bắc kinh', 2, 300000)
+GO
+
+INSERT INTO Food(Name, CategoryId, Price) 
+VALUES(N'Nước dừa', 4, 20000)
+GO
+
+INSERT INTO Food(Name, CategoryId, Price) 
+VALUES(N'Nước dứa', 4, 30000)
+GO
+
+--Thêm bill
+INSERT INTO Bill(DataCheckIn, DataCheckOut, TableId, [Status]) 
+VALUES(GETDATE(), NULL, 6, 0)
+GO
+
+INSERT INTO Bill(DataCheckIn, DataCheckOut, TableId, [Status]) 
+VALUES(GETDATE(), NULL, 7, 0)
+GO
+
+INSERT INTO Bill(DataCheckIn, DataCheckOut, TableId, [Status]) 
+VALUES(GETDATE(), GETDATE(), 7, 1)
+GO
+
+--Thêm bill info
+INSERT INTO BillInfo(BillId, FoodId, [Count]) 
+VALUES(6, 1, 2)
+GO
+
+INSERT INTO BillInfo(BillId, FoodId, [Count]) 
+VALUES(6, 3, 4)
+GO
+
+INSERT INTO BillInfo(BillId, FoodId, [Count]) 
+VALUES(6, 5, 1)
+GO
+
+INSERT INTO BillInfo(BillId, FoodId, [Count]) 
+VALUES(7, 1, 2)
+GO
+
+INSERT INTO BillInfo(BillId, FoodId, [Count]) 
+VALUES(7, 6, 2)
+GO
+
+INSERT INTO BillInfo(BillId, FoodId, [Count]) 
+VALUES(8, 5, 2)
+GO
+
+
+
+
+

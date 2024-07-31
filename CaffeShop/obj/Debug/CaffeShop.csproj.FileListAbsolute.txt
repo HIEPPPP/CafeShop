@@ -1,0 +1,13 @@
+D:\P_Winform\CaffeShop\CaffeShop\bin\Debug\CaffeShop.exe.config
+D:\P_Winform\CaffeShop\CaffeShop\bin\Debug\CaffeShop.exe
+D:\P_Winform\CaffeShop\CaffeShop\bin\Debug\CaffeShop.pdb
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.csproj.AssemblyReference.cache
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.fLogin.resources
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.Properties.Resources.resources
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.csproj.GenerateResource.cache
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.csproj.CoreCompileInputs.cache
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.exe
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.pdb
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.fTableManager.resources
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.AccountProfile.resources
+D:\P_Winform\CaffeShop\CaffeShop\obj\Debug\CaffeShop.fAdmin.resources
